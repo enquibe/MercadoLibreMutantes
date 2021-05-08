@@ -10,13 +10,13 @@ public class MutantDetectorTests {
     private final MutantDetector mutantDetector = new MutantDetector();
 
     @Test
-    void detectsHuman() {
+    void detectsMutant() {
         String[] mutantDna = { "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG" };
         assertTrue(mutantDetector.isMutant(mutantDna));
     }
 
     @Test
-    void detectsMutant() {
+    void detectsHuman() {
         String[] humanDna = { "ATGCGA", "CAGTGC", "TTATTT", "AGACGG", "GCGTCA", "TCACTG" };
         assertFalse(mutantDetector.isMutant(humanDna));
     }
