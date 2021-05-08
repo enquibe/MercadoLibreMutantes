@@ -46,28 +46,33 @@ public class MutantControllerTests {
     }
 
     @Test
-    @Disabled
-    void returnStatus400_ifInvalidInput_MatrixRows() throws Exception {
+    void returnStatus400_ifInvalidInput_DnaRows() throws Exception {
         String[] missingRowDna = { "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA" };
 
-        performMutantsPost(missingRowDna)
-            .andExpect(status().isBadRequest());
-            // .andExpect(jsonPath("$.timestamp", is(notNullValue())))
-            // .andExpect(jsonPath("$.status", is(400)))
-            // .andExpect(jsonPath("$.errors").isArray())
-            // .andExpect(jsonPath("$.errors", hasSize(3)))
-            // .andExpect(jsonPath("$.errors", hasItem("Author is not allowed.")))
+        performMutantsPost(missingRowDna).andExpect(status().isBadRequest());
     }
 
+    // TODO: Otro unit test inyectando Validator? 
     @Test
-    @Disabled
-    void returnStatus400_ifInvalidInput_MatrixCols() throws Exception {
+    void returnStatus400_ifInvalidInput_DnaCols() throws Exception {
         String[] missingColDna = { "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACT" };
 
         performMutantsPost(missingColDna).andExpect(status().isBadRequest());
     }
 
-    // TODO: Empty matrix. Null matrix
+    @Test
+    void returnStatus400_ifInvalidInput_DnaEmpty() throws Exception {
+        String[] emptyDna = { "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACT" };
+
+        performMutantsPost(emptyDna).andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void returnStatus400_ifInvalidInput_DnaNull() throws Exception {
+        performMutantsPost(null).andExpect(status().isBadRequest());
+    }
+
+    // TODO: Todos los mensajes de error juntos (ej: caracter y columna)
 
     ResultActions performMutantsPost(String[] dna) throws Exception {
         DetectMutantRequest request = new DetectMutantRequest(dna);

@@ -17,11 +17,6 @@ public class MutantController {
 
     private static final Logger logger = LoggerFactory.getLogger(MutantController.class);
 
-    @InitBinder
-    protected void initBinder(WebDataBinder binder) {
-        binder.addValidators(new DetectMutantRequestValidator());
-    }
-
     @PostMapping()
     public ResponseEntity<String> isMutant(@Valid @RequestBody DetectMutantRequest request) {
         return ResponseEntity.ok("valid");

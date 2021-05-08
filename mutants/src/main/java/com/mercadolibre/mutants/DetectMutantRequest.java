@@ -10,6 +10,7 @@ public class DetectMutantRequest {
         this.dna = dna;
     }
 
+    @DnaConstraint
     private String[] dna;
 
     public String[] getDna() {
