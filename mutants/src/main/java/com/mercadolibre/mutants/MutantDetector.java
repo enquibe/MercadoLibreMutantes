@@ -1,6 +1,11 @@
 package com.mercadolibre.mutants;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class MutantDetector {
+
+    public MutantDetector() {}
 
     private static final int SEQ_LENGTH = 4;
 

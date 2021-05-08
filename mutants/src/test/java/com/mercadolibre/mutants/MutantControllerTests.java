@@ -1,14 +1,16 @@
 package com.mercadolibre.mutants;
 
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -22,18 +24,23 @@ public class MutantControllerTests {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @MockBean 
+    private MutantDetector mutantDetector;
+
     @Test
-    @Disabled
     void returnStatus200_ifMutant() throws Exception {
         String[] mutantDna = { "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG" };
+
+        when(mutantDetector.isMutant(eq(mutantDna))).thenReturn(true);
 
         performMutantsPost(mutantDna).andExpect(status().isOk());
     }
 
     @Test
-    @Disabled
     void returnStatus403_ifHuman() throws Exception {
         String[] humanDna = { "ATGCGA", "CAGTGC", "TTATTT", "AGACGG", "GCGTCA", "TCACTG" };
+
+        when(mutantDetector.isMutant(eq(humanDna))).thenReturn(false);
 
         performMutantsPost(humanDna).andExpect(status().isForbidden());
     }
@@ -52,7 +59,6 @@ public class MutantControllerTests {
         performMutantsPost(missingRowDna).andExpect(status().isBadRequest());
     }
 
-    // TODO: Otro unit test inyectando Validator? 
     @Test
     void returnStatus400_ifInvalidInput_DnaCols() throws Exception {
         String[] missingColDna = { "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACT" };
@@ -72,7 +78,12 @@ public class MutantControllerTests {
         performMutantsPost(null).andExpect(status().isBadRequest());
     }
 
-    // TODO: Todos los mensajes de error juntos (ej: caracter y columna)
+    @Test
+    void returnStatus400_ifInvalidInput_DnaRowsAndChars() throws Exception {
+        String[] missingRowInvalidCharDna = { "ATGCGA", "CAGTGC", "TTAKGT", "AGAAGG", "CCCCTA" };
+
+        performMutantsPost(missingRowInvalidCharDna).andExpect(status().isBadRequest());
+    }
 
     ResultActions performMutantsPost(String[] dna) throws Exception {
         DetectMutantRequest request = new DetectMutantRequest(dna);
