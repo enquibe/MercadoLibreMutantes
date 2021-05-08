@@ -1,7 +1,9 @@
 package com.mercadolibre.mutants;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -17,26 +19,31 @@ public class DnaValidator implements ConstraintValidator<DnaConstraint, String[]
             return true;
         }
 
+        Set<String> errors = new HashSet<>();
+        
         for (String row : value) {
             if (row.length() != value.length) {
-                setConstraintViolation(context, "La matriz debe ser cuadrada (NxN)");
-                return false;
+                errors.add("La matriz debe ser cuadrada (NxN)");
             }
             
             for (int i = 0; i < row.length(); i++) {
                 if (!allowed.contains(row.charAt(i))) {
-                    setConstraintViolation(context, String.format("Sólo se admiten los siguientes caracteres: %s", allowed));
-                    return false;
+                    errors.add(String.format("Sólo se admiten los siguientes caracteres: %s", allowed));
                 }
             }
         }
 
-        return true;
+        if (errors.isEmpty()) {
+            return true;
+        }
+
+        setConstraintViolation(context, errors);
+        return false;
     }
 
-    private void setConstraintViolation(ConstraintValidatorContext context, String message) {
+    private void setConstraintViolation(ConstraintValidatorContext context, Set<String> errors) {
         context.disableDefaultConstraintViolation();
-        context.buildConstraintViolationWithTemplate(message).addConstraintViolation();
+        errors.forEach(x -> context.buildConstraintViolationWithTemplate(x).addConstraintViolation());
     }
     
 }
