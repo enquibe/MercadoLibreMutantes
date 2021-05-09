@@ -8,7 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mercadolibre.mutants.detector.DetectMutantRequest;
 import com.mercadolibre.mutants.detector.MutantController;
-import com.mercadolibre.mutants.detector.MutantDetector;
+import com.mercadolibre.mutants.detector.MutantService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +28,13 @@ public class MutantControllerTests {
     private ObjectMapper objectMapper;
 
     @MockBean 
-    private MutantDetector mutantDetector;
+    private MutantService mutantService;
 
     @Test
     void returnStatus200_ifMutant() throws Exception {
         String[] mutantDna = { "ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG" };
 
-        when(mutantDetector.isMutant(eq(mutantDna))).thenReturn(true);
+        when(mutantService.isMutant(eq(mutantDna))).thenReturn(true);
 
         performMutantsPost(mutantDna).andExpect(status().isOk());
     }
@@ -43,7 +43,7 @@ public class MutantControllerTests {
     void returnStatus403_ifHuman() throws Exception {
         String[] humanDna = { "ATGCGA", "CAGTGC", "TTATTT", "AGACGG", "GCGTCA", "TCACTG" };
 
-        when(mutantDetector.isMutant(eq(humanDna))).thenReturn(false);
+        when(mutantService.isMutant(eq(humanDna))).thenReturn(false);
 
         performMutantsPost(humanDna).andExpect(status().isForbidden());
     }
