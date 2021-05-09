@@ -1,4 +1,4 @@
-package com.mercadolibre.mutants;
+package com.mercadolibre.mutants.detector;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

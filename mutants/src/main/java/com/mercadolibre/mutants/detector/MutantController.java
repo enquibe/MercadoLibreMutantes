@@ -1,8 +1,12 @@
-package com.mercadolibre.mutants;
+package com.mercadolibre.mutants.detector;
 
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
+
+import com.mercadolibre.mutants.db.Dna;
+import com.mercadolibre.mutants.db.DnaRepository;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

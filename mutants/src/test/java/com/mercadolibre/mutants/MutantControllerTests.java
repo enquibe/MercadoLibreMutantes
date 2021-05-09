@@ -6,6 +6,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mercadolibre.mutants.detector.DetectMutantRequest;
+import com.mercadolibre.mutants.detector.MutantController;
+import com.mercadolibre.mutants.detector.MutantDetector;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

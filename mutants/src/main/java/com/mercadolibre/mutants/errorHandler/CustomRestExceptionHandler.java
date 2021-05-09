@@ -1,4 +1,4 @@
-package com.mercadolibre.mutants;
+package com.mercadolibre.mutants.errorHandler;
 
 import java.util.List;
 import java.util.stream.Collectors;
