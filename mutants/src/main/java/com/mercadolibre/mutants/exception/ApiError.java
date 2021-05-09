@@ -1,4 +1,4 @@
-package com.mercadolibre.mutants.errorHandler;
+package com.mercadolibre.mutants.exception;
 
 import java.util.Arrays;
 import java.util.Date;

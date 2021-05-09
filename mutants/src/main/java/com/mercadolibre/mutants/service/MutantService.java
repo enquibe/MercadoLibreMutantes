@@ -1,8 +1,10 @@
-package com.mercadolibre.mutants.detector;
+package com.mercadolibre.mutants.service;
 
 import java.util.Optional;
-import com.mercadolibre.mutants.db.Dna;
-import com.mercadolibre.mutants.db.DnaRepository;
+
+import com.mercadolibre.mutants.model.Dna;
+import com.mercadolibre.mutants.repository.DnaRepository;
+
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package com.mercadolibre.mutants.detector;
+package com.mercadolibre.mutants.web;
 
 import java.util.Arrays;
 import java.util.HashSet;

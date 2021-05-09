@@ -1,4 +1,4 @@
-package com.mercadolibre.mutants.errorHandler;
+package com.mercadolibre.mutants.exception;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +31,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler({ Exception.class })
-    public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
+    public ResponseEntity<Object> handleAllUncaughtException(Exception ex, WebRequest request) {
         ApiError body = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage());
         
         return new ResponseEntity<>(body, new HttpHeaders(), body.getStatus());

@@ -1,6 +1,6 @@
-package com.mercadolibre.mutants.stats;
+package com.mercadolibre.mutants.web;
 
-import com.mercadolibre.mutants.db.DnaRepository;
+import com.mercadolibre.mutants.repository.DnaRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +16,10 @@ public class StatsController {
     }
 
     @GetMapping() 
-    public Stats mutantsRatio() {
+    public StatsResponse mutantsRatio() {
         long mutantCount = dnaRepository.countByIsMutant(true);
         long humanCount = dnaRepository.countByIsMutant(false);
 
-        return new Stats(mutantCount, humanCount);
+        return new StatsResponse(mutantCount, humanCount);
     }
 }

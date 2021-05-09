@@ -1,4 +1,4 @@
-package com.mercadolibre.mutants.detector;
+package com.mercadolibre.mutants.service;
 
 import org.springframework.stereotype.Service;
 

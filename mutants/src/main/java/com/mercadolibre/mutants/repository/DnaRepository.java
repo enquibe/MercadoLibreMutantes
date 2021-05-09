@@ -1,6 +1,8 @@
-package com.mercadolibre.mutants.db;
+package com.mercadolibre.mutants.repository;
 
 import java.util.Optional;
+
+import com.mercadolibre.mutants.model.Dna;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
