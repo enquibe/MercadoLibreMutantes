@@ -50,5 +50,5 @@ jobs:
       with:
         app-name: 'mutants'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ee561c588e2f463e9a83e88b98addbc0 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_de3a5fd4f94d49969985ae465eb046e7 }}
         package: '*.jar'
