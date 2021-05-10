@@ -60,4 +60,16 @@ Se puede usar cualquier plataforma que provea un entorno con Java 11 y Java SE (
 
 Ejemplo en Azure, con grupo de recursos que incluye suscripción a MongoDB Atlas: 
 
-![image](https://user-images.githubusercontent.com/15891071/117599490-48009680-b120-11eb-8c56-92e5cf5d6ea9.png)
+![Azure Insights](https://user-images.githubusercontent.com/15891071/117599490-48009680-b120-11eb-8c56-92e5cf5d6ea9.png)
+
+## Cobertura
+
+Se verifica con JaCoCo, ejecutando:
+
+```
+./mvnw clean test
+```
+
+El reporte aparecerá en mutants/target/site/jacoco/index.html
+
+![JaCoCo](https://user-images.githubusercontent.com/15891071/117603864-77b49c00-b12a-11eb-94e6-2616f7539d48.png)
