@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "68621bb3-e6fc-4a7a-9d73-70160ed2c161",
+		"name": "Mercado Libre Mutants API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/stats",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mutant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dna\": [\"ATGCGA\", \"CAGTGC\", \"TTATGT\", \"AGAAGG\", \"CCCCTA\", \"TCACTG\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/mutants",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"mutants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Human",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dna\": [\"ATGCGA\", \"CAGTGC\", \"TTATTT\", \"AGACGG\", \"GCGTCA\", \"TCACTG\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/mutants",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"mutants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid letters",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dna\": [\"ATGCGA\", \"CAGTGC\", \"TKTATT\", \"AGACGG\", \"GCGTCA\", \"TCACTG\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/mutants",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"mutants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid rows",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dna\": [\"ATGCGA\", \"CAGTGC\", \"TTATGT\", \"AGAAGG\", \"CCCCTA\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/mutants",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"mutants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid columns",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dna\": [\"ATGCGA\", \"CAGTGC\", \"TTATGT\", \"AGAAGG\", \"CCCCTA\", \"TCACT\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/mutants",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"mutants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid columns and letters",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dna\": [\"ATGCGA\", \"CAGTGC\", \"TTATGT\", \"AGAAKG\", \"CCCCTA\", \"TCACT\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/mutants",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"mutants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid empty matrix",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dna\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/mutants",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"mutants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid null matrix",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"other\": [\"ATGCGA\", \"CAGTGC\", \"TTATGT\", \"AGAAGG\", \"CCCCTA\", \"TCACT\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/mutants",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"mutants"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
