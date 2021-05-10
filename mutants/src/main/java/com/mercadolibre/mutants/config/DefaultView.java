@@ -9,7 +9,7 @@ public class DefaultView implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addRedirectViewController("/*", "/swagger-ui/");
+        registry.addRedirectViewController("/", "/swagger-ui/");
     }
 
 }
